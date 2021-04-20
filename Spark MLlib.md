@@ -1,6 +1,6 @@
-# Spark_MLlib_DataFrame
+# Spark MLlib
 
-## Spark MLlib
+## What is it?
 
 MLlib là một thư viện machinelearning của Spark. Mục đích của nó là tạo nên những chương trình machine learning thực tế và có thể mở rộng dễ dàng.
 - ML Algorithms: những thuật toán học máy thông dụng như classification, regession, clustering và collaborative filtering.
