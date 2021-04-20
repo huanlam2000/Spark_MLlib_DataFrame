@@ -15,7 +15,7 @@ MLlib là một thư viện machinelearning của Spark. Mục đích của nó 
 
 - DataFrame: ML API này sử dụng DataFrame từ Spark SQL như một ML dataset cái mà có thể lưu giữ một lượng đa dạng các kiểu dữ liệu. Dataframe có thể có nhiều cột lưu trữ cả chữ, vector thuộc tính, các nhãn đúng và các dự đoán.
 - Transformer: Một transormer là một thuật toán biến đổi một DataFrame thành một DataFrame khác. Một mô hình ML là một transformer biến đổi DataFrame với các thuộc tính thành một DataFrame với các dự đoán.
-- Estimator: Một Estimator là một thuật toán có thể 'fit' trên DataFrame và tạo ra một transformer. Một thuật toán học là một Estimator, cái có thể 'trains' trên DataFrame và tạo ra một model.
+- Estimator: Một Estimator là một thuật toán có thể `fit` trên DataFrame và tạo ra một transformer. Một thuật toán học là một Estimator, cái có thể `trains` trên DataFrame và tạo ra một model.
 - Pipeline: Một Pipeline kết nối nhiều Transformer và Estimators lại với nhau để xác định một luồng làm việc của ML.
 - Parameter: Tất cả Transformers và Estimators chia sẻ một API để chỉ định các tham số.
 
@@ -31,23 +31,23 @@ Phẩn code Demo sẽ nằm ở phần dưới của bài viết này.
 
 #### Transformers
 
-Một Transformer là một sự trườu tượng bao gồm các feature transformer và learned models. Nói một cách kỹ thuật thì một Transformer hiện thực một phương thức 'transform()' biến đổi một DataFrame thành một cái khác, thông thường là bằng cách thêm một hoặc nhiều cột. Ví dụ như:
+Một Transformer là một sự trườu tượng bao gồm các feature transformer và learned models. Nói một cách kỹ thuật thì một Transformer hiện thực một phương thức `transform()` biến đổi một DataFrame thành một cái khác, thông thường là bằng cách thêm một hoặc nhiều cột. Ví dụ như:
 - Một feature transformer nhận vào một DataFrame, đọc một cột, map nó sang một cột mới và đầu ra của nó là một DataFrame mới với một cột đã được map thêm vào sau đó.
 - Một mô hình học máy nhận vào một DataFrame, đọc vào một chứa các feature vector, dự đoán nhãn cho mỗi feature vector và đầu ra là một DataFrame mới với các nhãn được dự đoán đã được thêm vào dưới dạng 1 cột.
 
 #### Estimators
-Một Estimator rút trích khái niệm của một thuật toán học máy hay bất kì thuật toán nào 'fits' or 'trains' trên dữ liệu. Nói một cách kĩ thuật thì một Estimator hiện thực lại phương thức 'fit()', phương thức này nhận một DataFrame và tạo ra một Model là một Transformer. Ví dụ, một thuật toán học máy như Logistic Regression là một Estimator và gọi hàm 'fit()' để 'trains' một LogisticRegressionModel là một Model và do đó nên nó là một Transformer.
+Một Estimator rút trích khái niệm của một thuật toán học máy hay bất kì thuật toán nào `fits` or `trains` trên dữ liệu. Nói một cách kĩ thuật thì một Estimator hiện thực lại phương thức `fit()`, phương thức này nhận một DataFrame và tạo ra một Model là một Transformer. Ví dụ, một thuật toán học máy như Logistic Regression là một Estimator và gọi hàm `fit()` để `trains` một LogisticRegressionModel là một Model và do đó nên nó là một Transformer.
 
 #### Properties of pipeline coomponents
 
-'Transformer.transform()' và 'Estimator.fit()' đều không được công nhận, trong tương lai, các thuật toán stateful có lẽ được hỗ trợ thông qua khái niệm khác.
+`Transformer.transform()` và `Estimator.fit()` đều không được công nhận, trong tương lai, các thuật toán stateful có lẽ được hỗ trợ thông qua khái niệm khác.
 
 Mỗi đối tượng của một Transformer hoặc Estimator có một ID không trùng lặp, ID này hữu dụng trong việc chỉ định rõ các parameter( đề cập sau).
 
 #### Pipeline
 
 Trong học máy, nó rất thông dụng để chạy một chuỗi các thuật toán để xử lí và học từ data. Một quá trình xử lí tài liệu chữ thường sẽ chứa những bước sau:
-- 'Split' text trong mỗi tài liệu thành các từ.
+- `Split` text trong mỗi tài liệu thành các từ.
 - Biến đổi mỗi từ của tài liệu thành một vector số.
 - Học một mô hình dự đoán sử dụng feature vectors và labels.
 
@@ -62,14 +62,18 @@ MLlib Estimators và Transformers sử dụng một API đồng nhất để ch�
 Một *Param* là một parameter đã được đặt tên với dữ liệu độc lập. Một ParamMap là một tập hợp các cặp (parameter, value)
 
 Có 2 cách để truyền các parameter vào một thuật toán:
-1. Cài đặt các parameter cho một đối tượng. nếu 'lr' là một đối tượng của LogisticRegression, nó có thể gọi hàm 'lr.setMaxIter(10)' để làm cho hàm 'lr.fit()' lặp 10 lần. API này giống với API sử dụng trong 'spark.mllib' package
-2. Truyền một ParamMap vào 'fit()' hoặc 'transform()'. Bất kì parameters trong ParamMap sẽ chạy đè lên parameters trước đó được chỉ định thông qua phương thức setter.
+1. Cài đặt các parameter cho một đối tượng. nếu `lr` là một đối tượng của LogisticRegression, nó có thể gọi hàm `lr.setMaxIter(10)` để làm cho hàm `lr.fit()` lặp 10 lần. API này giống với API sử dụng trong `spark.mllib` package
+2. Truyền một ParamMap vào `fit()` hoặc `transform()`. Bất kì parameters trong ParamMap sẽ chạy đè lên parameters trước đó được chỉ định thông qua phương thức setter.
 
 #### ML persistence: Saving and Loading Pipelines
 ML persistence hoạt động trên Scala, Java và Python. Tuy nhiên, R hiện đang sử dụng một định dạng đã sửa đổi, vì vậy các mô hình được lưu trong R chỉ có thể được tải trở lại trong R; điều này sẽ được khắc phục trong tương lai và được theo dõi trong SPARK-15572.
 
 ## Code Example
 [Example: Estimator, Transformer and Param](https://github.com/huanlam2000/Spark_MLlib_DataFrame/blob/main/Estimator_Transformer_Param.ipynb)
+
 [Example: Pipeline](https://github.com/huanlam2000/Spark_MLlib_DataFrame/blob/main/Pipeline.ipynb)
 
+
+
+# Reference
 [Spark MLlib](http://spark.apache.org/docs/latest/ml-pipeline.html#main-concepts-in-pipelines)
