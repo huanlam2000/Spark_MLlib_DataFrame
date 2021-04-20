@@ -29,13 +29,13 @@ Phẩn code Demo sẽ nằm ở phần dưới của bài viết này.
 
 ### Pipeline components
 
-####Transformers
+#### Transformers
 
 Một Transformer là một sự trườu tượng bao gồm các feature transformer và learned models. Nói một cách kỹ thuật thì một Transformer hiện thực một phương thức 'transform()' biến đổi một DataFrame thành một cái khác, thông thường là bằng cách thêm một hoặc nhiều cột. Ví dụ như:
 - Một feature transformer nhận vào một DataFrame, đọc một cột, map nó sang một cột mới và đầu ra của nó là một DataFrame mới với một cột đã được map thêm vào sau đó.
 - Một mô hình học máy nhận vào một DataFrame, đọc vào một chứa các feature vector, dự đoán nhãn cho mỗi feature vector và đầu ra là một DataFrame mới với các nhãn được dự đoán đã được thêm vào dưới dạng 1 cột.
 
-####Estimators
+#### Estimators
 Một Estimator rút trích khái niệm của một thuật toán học máy hay bất kì thuật toán nào 'fits' or 'trains' trên dữ liệu. Nói một cách kĩ thuật thì một Estimator hiện thực lại phương thức 'fit()', phương thức này nhận một DataFrame và tạo ra một Model là một Transformer. Ví dụ, một thuật toán học máy như Logistic Regression là một Estimator và gọi hàm 'fit()' để 'trains' một LogisticRegressionModel là một Model và do đó nên nó là một Transformer.
 
 #### Properties of pipeline coomponents
