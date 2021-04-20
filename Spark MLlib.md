@@ -68,11 +68,6 @@ Có 2 cách để truyền các parameter vào một thuật toán:
 #### ML persistence: Saving and Loading Pipelines
 ML persistence hoạt động trên Scala, Java và Python. Tuy nhiên, R hiện đang sử dụng một định dạng đã sửa đổi, vì vậy các mô hình được lưu trong R chỉ có thể được tải trở lại trong R; điều này sẽ được khắc phục trong tương lai và được theo dõi trong SPARK-15572.
 
-## Code Example
-[Example: Estimator, Transformer and Param](https://github.com/huanlam2000/Spark_MLlib_DataFrame/blob/main/Estimator_Transformer_Param.ipynb)
-
-[Example: Pipeline](https://github.com/huanlam2000/Spark_MLlib_DataFrame/blob/main/Pipeline.ipynb)
-
 
 
 # Reference
