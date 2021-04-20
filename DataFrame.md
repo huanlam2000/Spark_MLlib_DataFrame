@@ -107,7 +107,7 @@ Giả sử ta có một DataFrame như hình bên dưới:
 
 ![DataFrame](https://user-images.githubusercontent.com/57447237/115392633-fa70c800-a20a-11eb-9939-9d6ddde4c3b0.png)
 
-Và ta chỉ muốn tìm những dòng dữ liệu có State = OH, ta sẽ làm như sau:
+Và ta chỉ muốn tìm những dòng dữ liệu có `State = OH`, ta sẽ làm như sau:
 
       df.filter(df.state == "OH").show()
       
